@@ -1,6 +1,4 @@
 def call(Map config) {
-    stage('Push to Nexus') {
-     
             script {
                 def artifactPath = "target/${config.NEXUS_ARTIFACT_ID}-0.0.1.jar"
                 def artifactVersion = "${config.ARTIFACT_VERS}-${env.DEPLOY_TAG}"
@@ -21,7 +19,7 @@ def call(Map config) {
                         ]
                     ]
                 )
-            }
+            
         
     }
 }
