@@ -1,6 +1,8 @@
 def call() {
      def jdkTool = tool 'jdk17'
-    withEnv(["JAVA_HOME=${jdkTool}"]) {
-sh 'mvn clean package'
-    }
+     stage('Package') {
+          withEnv(["JAVA_HOME=${jdkTool}"]) {
+          sh 'mvn clean package'
+         }
+     }
 }
