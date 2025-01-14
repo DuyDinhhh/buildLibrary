@@ -1,4 +1,6 @@
 def call () {
-    deleteDir()
-    checkout scm
+    stage('Checkout Code') {
+        deleteDir()
+        checkout scm
+    }
 }
