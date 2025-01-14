@@ -1,25 +1,22 @@
-def call(Map config) {
-            script {
-                def artifactPath = "target/${config.NEXUS_ARTIFACT_ID}-0.0.1.jar"
-                def artifactVersion = "${config.ARTIFACT_VERS}-${config.DEPLOY_TAG}"
+def call() {
+    stage('Upload Artifact to Nexus'){
+        script {
+                def artifactPath = "target/${env.NEXUS_ARTIFACT_ID}-0.0.1.jar"
+                def artifactVersion = "${env.ARTIFACT_VERS}-${env.DEPLOY_TAG}"
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: config.NEXUS_URL,
-                    groupId: config.NEXUS_GROUP,
+                    nexusUrl: env.NEXUS_URL,
+                    groupId: env.NEXUS_GROUP,
                     version: artifactVersion,
-                    repository: config.NEXUS_REPOSITORY,
-                    credentialsId: config.NEXUS_CREDENTIALS_ID,
+                    repository: env.NEXUS_REPOSITORY,
+                    credentialsId: env.NEXUS_CREDENTIALS_ID,
                     artifacts: [
-                        [
-                            artifactId: config.NEXUS_ARTIFACT_ID,
-                            classifier: '',
-                            file: artifactPath,
-                            type: 'jar'
-                        ]
-                    ]
-                )
-            
-        
+                        [artifactId: env.NEXUS_ARTIFACT_ID,
+                         classifier: '',
+                         file: artifactPath,
+                         type: 'jar']
+                    ])
+        }
     }
 }
