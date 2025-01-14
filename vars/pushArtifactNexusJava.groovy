@@ -1,7 +1,7 @@
 def call(Map config) {
             script {
                 def artifactPath = "target/${config.NEXUS_ARTIFACT_ID}-0.0.1.jar"
-                def artifactVersion = "${config.ARTIFACT_VERS}-${env.DEPLOY_TAG}"
+                def artifactVersion = "${config.ARTIFACT_VERS}-${config.DEPLOY_TAG}"
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
