@@ -1,5 +1,5 @@
 def call() {
-    script {
+    stage('Package Application') {
             def artifactPath = "target/${env.NEXUS_ARTIFACT_ID}-0.0.1.jar"
             def artifactVersion = "${env.ARTIFACT_VERS}-${env.DEPLOY_TAG}"
             nexusArtifactUploader(
